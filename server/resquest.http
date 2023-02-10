@@ -1,0 +1,48 @@
+POST  http://localhost:8080/api/register
+Content-Type: application/json
+
+{
+    "name":"admin",
+    "email":"admin@gmail.com",
+    "password": "1234",
+    "address":"Nam Dinh",
+    "phone":"0969938892"
+}
+###
+
+POST http://localhost:8080/api/login
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "1234"
+}
+###
+
+DELETE  http://localhost:8080/api/delete
+Content-Type: application/json
+
+{
+    "id":"63dd3c66794001e38e12b891"
+   
+}
+###
+
+POST http://localhost:8080/api/add
+Content-Type: application/json
+
+{
+    "name":"oppo" ,
+    "img": "ádas",
+    "price":"120" ,
+    "descreption": "ádas",
+    "trademark": "ádas"
+}
+###
+
+POST http://localhost:8080/api/search/iphone
+Content-Type: application/json
+
+{
+    "name":"oppo" ,
+}
