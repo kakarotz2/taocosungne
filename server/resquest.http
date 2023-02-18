@@ -32,11 +32,13 @@ POST http://localhost:8080/api/add
 Content-Type: application/json
 
 {
-    "name":"oppo" ,
-    "img": "ádas",
-    "price":"120" ,
-    "descreption": "ádas",
-    "trademark": "ádas"
+    "name":"Bộ Vali Phụ kiện cho Asus" ,
+    "img": "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/i/r/irhqclp.jpg",
+    "price":"12000000" ,
+    "descreption": "Đây là cái điện thoại oppo",
+    "trademark": "dell",
+    "origin":"trung quốc",
+    "category":"Điện thoại"
 }
 ###
 

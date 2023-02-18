@@ -43,14 +43,13 @@ exports.register = async (req, res) => {
 
 // login API
 exports.login = (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   // Find user by email
-  UserModel.findOne({ username }).then((user) => {
+  UserModel.findOne({ email }).then((user) => {
     if (!user) {
-      return res.status(404).json({ username: 'User not found' });
+      return res.status(404).json({ message: 'Email not found' });
     }
-
     // Check password
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (isMatch) {
@@ -69,7 +68,7 @@ exports.login = (req, res) => {
           });
         });
       } else {
-        return res.status(400).json({ password: 'Password incorrect' });
+        return res.status(400).json({ message: 'Password incorrect' });
       }
     });
   });

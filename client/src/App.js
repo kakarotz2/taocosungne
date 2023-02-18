@@ -6,6 +6,9 @@ import LoginForm from './page/Login/login';
 import Product from './page/Product/product';
 import Register from './page/Register/register';
 import Search from './page/Search/search';
+import BasicExample from './Redux/test';
+import './App.scss';
+
 function App() {
   return (
     <div className="App">
@@ -16,6 +19,8 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/test" element={<BasicExample />} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
 import Logo from '../Loading/Logo/loading';
 import { useDispatch, useSelector } from 'react-redux';
-import * as userAction from '../../Redux/Action/user.action';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowCircleUp,
@@ -16,17 +16,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import './header.scss';
+import { logout } from '../../Redux/slice/authSlice';
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState('');
-  const Navigate = useNavigate();
-  const user = useSelector((state) => state.user);
-  console.log(user);
   const dispatch = useDispatch();
-  const logout = () => {
-    dispatch(userAction.logout());
-    localStorage.removeItem(user.userInfo.token);
-    Navigate('/login');
+  const user = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const { currentUser } = user;
+  const handelLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem('token', user.currentUser.token);
+    navigate('/login');
   };
 
   window.onscroll = function () {
@@ -110,8 +111,8 @@ const Header = () => {
               <div className="menu-item">
                 <div className="dropdown">
                   <FontAwesomeIcon className="icons" icon={faUser} />
-                  {user.userInfo.user ? user.userInfo.user.name : 'Tài khoản'}
-                  {!user.userInfo.user
+                  {currentUser.user.name ? currentUser.user.name : 'Tài khoản'}
+                  {!currentUser.user.name
                     ? user.showDropdown && (
                         <div className="dropdown-content">
                           <Link to="/login">
@@ -127,8 +128,8 @@ const Header = () => {
                           <Link to="/account">
                             <p>Tài Khoản</p>
                           </Link>
-                          <button className="btn_2" onClick={() => logout()}>
-                            <span>Đăng xuất</span>
+                          <button className="btn_2" onClick={() => handelLogout()}>
+                            Đăng xuất
                           </button>
                         </div>
                       )}

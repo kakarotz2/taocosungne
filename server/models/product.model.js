@@ -22,6 +22,14 @@ const ProductSchema = new Schema({
     type: String,
     default: 'Chưa xác định',
   },
+  origin: {
+    type: String,
+    default: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now,

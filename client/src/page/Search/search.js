@@ -6,25 +6,26 @@ import './search.scss';
 function Search() {
   const [results, setResults] = useState([]);
   const location = useLocation();
-
+  const searchValue = new URLSearchParams(location.search.toLowerCase()).get('q');
   useEffect(() => {
-    const searchValue = new URLSearchParams(location.search.toLowerCase()).get('q');
+    // const searchValue = new URLSearchParams(location.search.toLowerCase()).get('q');
     const fetchData = async () => {
       const result = await axios.get(`/api/product/${searchValue}`);
       setResults(result.data);
     };
     fetchData();
-  }, [location.search]);
-  if (location.search === '?q=') {
-    var search = 'Tất cả';
-  } else {
-    search = location.search;
-  }
+  }, [searchValue]);
+  // if (location.search === '?q=') {
+  //   var search = 'Tất cả';
+  // } else {
+  //   search = searchValue;
+  // }
   return (
     <React.Fragment>
       <Header />
       <div style={{ marginTop: '120px' }}>
-        Kết quả tìm kiếm với {location.search === '?q=' ? (search = 'Tất cả') : search.slice((0, 3)).toUpperCase()}
+        Kết quả tìm kiếm với {searchValue ? searchValue : 'Tất cả'}
+        {/* Kết quả tìm kiếm với {location.search === '?q=' ? (search = 'Tất cả') : search.slice((0, 3)).toUpperCase()} */}
         {results.map((item) => {
           return (
             <li key={item._id}>
