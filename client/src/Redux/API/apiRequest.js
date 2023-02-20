@@ -1,6 +1,21 @@
 import axios from 'axios';
 import { loginFalse, loginStart, loginSuccess } from '../slice/authSlice';
-import { getFalseL, getFalseP, getStartL, getStartP, getSuccessL, getSuccessP } from '../slice/productSlice';
+import { getFalseD, getStartD, getSuccessD } from '../slice/detailSlice';
+import {
+  getFalseA,
+  getFalseL,
+  getFalseP,
+  getFalsePc,
+  getStartA,
+  getStartL,
+  getStartP,
+  getStartPc,
+  getSuccessA,
+  getSuccessL,
+  getSuccessP,
+  getSuccessPc,
+} from '../slice/productSlice';
+import { getFalseS, getStartS, getSuccessS } from '../slice/searchSlice';
 
 export const loginUser = async ({ email, password }, dispatch, navigate) => {
   dispatch(loginStart());
@@ -44,23 +59,44 @@ export const getLaptop = () => async (dispatch) => {
 };
 
 export const getPC = () => async (dispatch) => {
-  dispatch(getStartL());
+  dispatch(getStartPc());
   try {
     const res = await axios.get('api/product/pc');
-    dispatch(getSuccessL(res.data));
+    dispatch(getSuccessPc(res.data));
   } catch (err) {
     console.log(err);
-    dispatch(getFalseL());
+    dispatch(getFalsePc());
   }
 };
 
 export const getAccessory = () => async (dispatch) => {
-  dispatch(getStartL());
+  dispatch(getStartA());
   try {
     const res = await axios.get('api/product/accessory');
-    dispatch(getSuccessL(res.data));
+    dispatch(getSuccessA(res.data));
   } catch (err) {
     console.log(err);
-    dispatch(getFalseL());
+    dispatch(getFalseA());
+  }
+};
+// tim` kiem'
+export const getSearch = () => async (dispatch) => {
+  dispatch(getStartS());
+  try {
+    const res = await axios.get('api/product/search/:name');
+    dispatch(getSuccessS(res));
+  } catch (error) {
+    dispatch(getFalseS());
+  }
+};
+
+// detail data
+export const getDetail = (id) => async (dispatch) => {
+  dispatch(getStartD());
+  try {
+    const res = await axios.get(`/api/product/getid/${id}`);
+    dispatch(getSuccessD(res.data));
+  } catch (error) {
+    dispatch(getFalseD());
   }
 };

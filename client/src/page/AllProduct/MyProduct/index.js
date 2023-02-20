@@ -11,19 +11,18 @@ function MyComponent(props) {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const itemsOnCurrentPage = props.sendData ? props.sendData.slice(startIndex, endIndex) : [];
-  console.log(itemsOnCurrentPage);
   return (
     <div>
       <div className="list-items">
         <div className="wrap-items">
           {props.isLoading ? (
             <LoadingProduct />
-          ) : props.sendData.length == 0 ? (
-            'Xin lỗi hiện tại Không có sản phẩm'
+          ) : itemsOnCurrentPage.length === 0 ? (
+            <p style={{ color: 'red', fontWeight: '600' }}>Xin lỗi hiện tại danh mục này không có sản phẩm</p>
           ) : (
             itemsOnCurrentPage.map((items) => (
               <div key={items._id} className="items">
-                <Link to="/">
+                <Link to={`/product/${items._id}`}>
                   <div className="photo">
                     <img src={items.img} alt="logo" />
                   </div>
@@ -35,7 +34,9 @@ function MyComponent(props) {
                   </div>
                 </Link>
                 <div className="title">
-                  <p>Bảo hành chọn đời một đổi một cho từng sản phẩm bị lỗi trong vòng 1 tuần</p>
+                  <p title="Bảo hành chọn đời một đổi một cho từng sản phẩm bị lỗi trong vòng 1 tuần">
+                    Bảo hành chọn đời một đổi một cho từng sản phẩm bị lỗi trong vòng 1 tuần
+                  </p>
                 </div>
               </div>
             ))

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getLaptop, getPhone } from '../../Redux/API/apiRequest';
+import { getAccessory, getLaptop, getPhone } from '../../Redux/API/apiRequest';
 import MyComponent from './MyProduct';
 import './index.scss';
 
@@ -11,16 +11,20 @@ function AllProduct() {
   useEffect(() => {
     dispatch(getPhone());
     dispatch(getLaptop());
+    dispatch(getAccessory());
   }, [dispatch]);
-  // const infoLaptop = useSelector((state) => state.product.laptop);
-  // console.log(infoLaptop);
+
   const infoPhone = useSelector((state) => state.phone.phone);
   const isLoadingP = useSelector((state) => state.phone.isLoading);
 
   const infoLaptop = useSelector((state) => state.laptop.laptop);
-  const isLoadingL = useSelector((state) => state.phone.isLoading);
+  const isLoadingL = useSelector((state) => state.laptop.isLoading);
 
-  // const isLoadingPhone = useSelector((state) => state.product.isLoading);
+  const infoPC = useSelector((state) => state.pc.Pc);
+  const isLoadingPC = useSelector((state) => state.pc.isLoading);
+
+  const infoAccessory = useSelector((state) => state.accessory.accessory);
+  const isLoadingA = useSelector((state) => state.accessory.isLoading);
 
   return (
     <div className="product">
@@ -68,7 +72,9 @@ function AllProduct() {
             <Link to="/">Xem tất cả</Link>
           </div>
         </div>
-        <div className="product-list-item">{/* <MyComponent /> */}</div>
+        <div className="product-list-item">
+          <MyComponent sendData={infoPC} isLoading={isLoadingPC} />
+        </div>
       </div>
       <div className="tablet product-item">
         <div className="all">
@@ -82,7 +88,9 @@ function AllProduct() {
             <Link to="/">Xem tất cả</Link>
           </div>
         </div>
-        <div className="product-list-item">{/* <MyComponent /> */}</div>
+        <div className="product-list-item">
+          <MyComponent sendData={infoAccessory} isLoading={isLoadingA} />
+        </div>
       </div>
     </div>
   );

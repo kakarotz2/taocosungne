@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-const Footer = () => {
+function Footer() {
   return (
     <footer className="bg-light mt-5">
       <Container fluid>
@@ -49,6 +49,6 @@ const Footer = () => {
       </Container>
     </footer>
   );
-};
+}
 
 export default Footer;
