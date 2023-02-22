@@ -6,9 +6,8 @@ import LoginForm from './page/Login/login';
 import Product from './page/Product/product';
 import Register from './page/Register/register';
 import Search from './page/Search/search';
-import BasicExample from './Redux/test';
-import './App.scss';
 import ProductDetail from './page/ProductDetail/ProductDetail';
+import './App.scss';
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/test" element={<BasicExample />} />
           <Route path="/product/:id" element={<ProductDetail />} />
 
           <Route path="*" element={<NotFoundPage />} />
