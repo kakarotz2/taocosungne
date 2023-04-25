@@ -83,17 +83,33 @@
         }
       }
       .pay {
-        .pay-now {
-          padding-top: 8px;
-          border-radius: 16px;
-          text-align: center;
-          width: 100%;
-          height: 64px;
-          background: linear-gradient(#f52f32, #e11b1e);
-          span {
-            color: white;
+        cursor: pointer;
+        .checkout {
+          display: flex;
+          justify-content: space-between;
+          .pay-now {
+            padding-top: 8px;
+            border-radius: 16px;
+            text-align: center;
+            width: 116%;
+            height: 64px;
+            background: linear-gradient(#f52f32, #e11b1e);
+            span {
+              color: white;
+            }
+          }
+          .ds {
+            border-radius: 16px;
+            width: 72px;
+            text-align: center;
+            border: 2px solid red;
+            padding-top: 6px;
+            p {
+              font-size: 9px;
+            }
           }
         }
+
         .installment {
           width: 100%;
           display: flex;

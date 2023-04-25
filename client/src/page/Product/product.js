@@ -22,8 +22,8 @@ function Product() {
       <div className="product-page">
         <div className="top-product">
           <Link to="/">
-            <FontAwesomeIcon style={{ margin: '0 4px 0 0', color: '#322e2ec4' }} icon={faHome} /> Trang chủ{' '}
-          </Link>{' '}
+            <FontAwesomeIcon style={{ margin: '0 4px 0 0', color: '#322e2ec4' }} icon={faHome} />
+          </Link>
           <FontAwesomeIcon style={{ margin: '0 8px', color: '#322e2ec4' }} icon={faChevronRight} /> Sản phẩm
         </div>
         <MyComponent sendData={product} />

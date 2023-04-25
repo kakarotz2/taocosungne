@@ -5,11 +5,17 @@ const authSlice = createSlice({
     isLoading: false,
     currentUser: {
       user: {
+        id: '',
         name: '',
+        role: '',
+        date: '',
+        email: '',
+        phone: '',
       },
       token: null,
     },
     error: '',
+    isSuccess: null,
     showDropdown: true,
   },
   reducers: {
@@ -20,16 +26,23 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.currentUser = action.payload;
       state.error = '';
+      state.isSuccess = true;
     },
     loginFalse: (state, action) => {
       state.isLoading = false;
-      state.error = 'Không thể đăng nhập. Vui lòng thử lại';
+      state.error = action.payload;
+      state.isSuccess = false;
     },
     logout: (state) => {
       state.isLoading = false;
       state.currentUser = {
         user: {
+          id: '',
           name: '',
+          role: '',
+          date: '',
+          email: '',
+          phone: '',
         },
         token: null,
       };

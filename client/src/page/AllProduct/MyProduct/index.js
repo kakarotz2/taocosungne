@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingProduct from '../../../component/Loading/LoadingProduct';
 import './product.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 function MyComponent(props) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = 5 * 2;
-  const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const itemsOnCurrentPage = props.sendData ? props.sendData.slice(startIndex, endIndex) : [];
@@ -17,8 +18,6 @@ function MyComponent(props) {
         <div className="wrap-items">
           {props.isLoading ? (
             <LoadingProduct />
-          ) : itemsOnCurrentPage.length === 0 ? (
-            <p style={{ color: 'red', fontWeight: '600' }}>Xin lỗi hiện tại danh mục này không có sản phẩm</p>
           ) : (
             itemsOnCurrentPage.map((items) => (
               <div key={items._id} className="items">
@@ -30,26 +29,22 @@ function MyComponent(props) {
                     <h3>{items.name}</h3>
                   </div>
                   <div className="price">
-                    <p>{formatter.format(12000000)}</p>
+                    <p>{items.price}</p>
                   </div>
                 </Link>
                 <div className="title">
-                  <p title="Bảo hành chọn đời một đổi một cho từng sản phẩm bị lỗi trong vòng 1 tuần">
-                    Bảo hành chọn đời một đổi một cho từng sản phẩm bị lỗi trong vòng 1 tuần
-                  </p>
+                  <p title={items.descreption}>{items.descreption}</p>
+                </div>
+                <div className="start">
+                  <FontAwesomeIcon icon={faStar} />
+                  <FontAwesomeIcon icon={faStar} />
+                  <FontAwesomeIcon icon={faStar} />
+                  <FontAwesomeIcon icon={faStar} />
+                  <FontAwesomeIcon icon={faStar} />
                 </div>
               </div>
             ))
           )}
-
-          {/* <div className="items"></div>
-          <div className="items"></div>
-          <div className="items"></div>
-          <div className="items"></div>
-          <div className="items"></div>
-          <div className="items"></div>
-          <div className="items"></div>
-          <div className="items"></div> */}
         </div>
       </div>
       {props.isLoading

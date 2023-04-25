@@ -20,7 +20,6 @@ function Search() {
     };
     fetchData();
   }, [location.search]);
-  console.log(results);
   return (
     <React.Fragment>
       <Header />

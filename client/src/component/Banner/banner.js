@@ -117,18 +117,18 @@ function Banner() {
         <div className="helo">
           <div className="left-banner">
             <img
-              src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/fold-4-00241.png"
+              src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/right-banner-s23-ultra-new.jpg"
               alt=""
             />
 
             <img
               className="mid"
-              src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/right-banner-aw-vlt-009.png"
+              src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/ideapad%203.jpg"
               alt=""
             />
 
             <img
-              src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/fold-4-00241.png"
+              src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/ipad-th4-009.jpg"
               alt=""
             />
           </div>

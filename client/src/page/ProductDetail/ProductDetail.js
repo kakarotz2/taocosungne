@@ -1,11 +1,12 @@
-import { faGift } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faGift } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Footer from '../../component/Footer/footer';
 import Header from '../../component/Header/header';
 import { getDetail } from '../../Redux/API/apiRequest';
+import { addToCart } from '../../Redux/slice/cartSlice';
 import './ProductDetail.scss';
 
 function ProductDetail() {
@@ -16,8 +17,10 @@ function ProductDetail() {
   useEffect(() => {
     dispatch(getDetail(id));
   }, [dispatch, id]);
-  console.log(product);
 
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
   return (
     <React.Fragment>
       <Header />
@@ -56,10 +59,19 @@ function ProductDetail() {
                 </div>
               </div>
               <div className="pay">
-                <div className="pay-now">
-                  <span style={{ fontWeight: '700' }}>Mua Ngay</span> <br />{' '}
-                  <span>(Giao hàng tận nơi hoặc nhận tại cửa hàng)</span>
+                <div className="checkout">
+                  <Link to="/checkout">
+                    <div className="pay-now">
+                      <span style={{ fontWeight: '700' }}>Mua Ngay</span> <br />
+                      <span>(Giao hàng tận nơi hoặc nhận tại cửa hàng)</span>
+                    </div>
+                  </Link>
+                  <div className="ds" onClick={handleAddToCart}>
+                    <FontAwesomeIcon style={{ color: 'red' }} icon={faCartShopping} />
+                    <p>Thêm vào giỏ</p>
+                  </div>
                 </div>
+
                 <div className="installment">
                   <div className="installment_0percent">
                     Trả góp 0% <br /> (xét duyệt qua điện thoại)
@@ -75,7 +87,7 @@ function ProductDetail() {
             </div>
             <div className="detail-right">
               <div className="info">
-                <span>Thông tin sản phẩm</span>
+                <span>Thông tin sản phẩm1</span>
               </div>
             </div>
           </div>

@@ -44,11 +44,10 @@ exports.register = async (req, res) => {
 // login API
 exports.login = (req, res) => {
   const { email, password } = req.body;
-
   // Find user by email
   UserModel.findOne({ email }).then((user) => {
     if (!user) {
-      return res.status(404).json({ message: 'Email not found' });
+      return res.status(404).json({ success: false, message: 'Email không tồn tại' });
     }
     // Check password
     bcrypt.compare(password, user.password).then((isMatch) => {
@@ -60,15 +59,16 @@ exports.login = (req, res) => {
         };
 
         // Sign token
-        jwt.sign(payload, process.env.ACCESS_TOKEN, { expiresIn: 3600 }, (err, token) => {
+        jwt.sign(payload, process.env.ACCESS_TOKEN, { expiresIn: '48h' }, (err, token) => {
           res.json({
             success: true,
             token: `Bearer ${token}`,
             user,
+            role: user.role.trim(),
           });
         });
       } else {
-        return res.status(400).json({ message: 'Password incorrect' });
+        return res.status(400).json({ success: false, message: 'Password không đúng' });
       }
     });
   });

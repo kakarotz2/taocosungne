@@ -48,3 +48,12 @@ Content-Type: application/json
 {
     "name":"oppo" ,
 }
+
+###
+
+GET http://localhost:8080/api/product/getid/63efde8192fc69f4a75e12cd
+Content-Type: application/json
+
+{
+    
+}

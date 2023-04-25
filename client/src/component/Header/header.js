@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Logo from '../Loading/Logo/loading';
@@ -20,13 +20,26 @@ import { logout } from '../../Redux/slice/authSlice';
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [username, setUsername] = useState('');
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const { currentUser } = user;
+
+  useEffect(() => {
+    const accessUsername = localStorage.getItem('username');
+    if (accessUsername) {
+      setUsername(accessUsername);
+    }
+  }, []);
   const handelLogout = () => {
     dispatch(logout());
-    localStorage.removeItem('token', user.currentUser.token);
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('role');
+    localStorage.removeItem('email');
+    localStorage.removeItem('date');
+    localStorage.removeItem('number');
+    localStorage.removeItem('id');
     navigate('/login');
   };
 
@@ -45,6 +58,10 @@ const Header = () => {
       document.documentElement.scrollTop = 0;
     });
   };
+
+  const items = useSelector((state) => state.cart.items);
+  console.log(items);
+  const cartItemCount = items.reduce((count, item) => count + item.quantity, 0);
 
   return (
     <header className="header">
@@ -106,13 +123,13 @@ const Header = () => {
               </div>
               <div className="menu-item">
                 <FontAwesomeIcon className="icons" icon={faCartShopping} />
-                <Link to="/cart">Giỏ hàng (0)</Link>
+                <Link to="/cart">Giỏ hàng ({cartItemCount})</Link>
               </div>
               <div className="menu-item">
                 <div className="dropdown">
                   <FontAwesomeIcon className="icons" icon={faUser} />
-                  {currentUser.user.name ? currentUser.user.name : 'Tài khoản'}
-                  {!currentUser.user.name
+                  {username ? username : 'Tài Khoản'}
+                  {!username
                     ? user.showDropdown && (
                         <div className="dropdown-content">
                           <Link to="/login">
